@@ -8,18 +8,16 @@ import pandas as pd
 
 keep_alive.keep_alive()
 
-##Web Scraping coinlist
-#URL = "https://www.binance.com/en/futures/trading-rules/perpetual"
-#page = requests.get(URL)
-#soup = BeautifulSoup(page.content,"html.parser")
-#results= soup.find(id="__APP")
-#coinPairList = soup.find_all("td", class_="rc-table-cell rc-table-cell-fix-left rc-table-cell-fix-left-last")
+Web Scraping coinlist
+URL = "https://www.binance.com/en/futures/trading-rules/perpetual"
+page = requests.get(URL)
+soup = BeautifulSoup(page.content,"html.parser")
+results= soup.find(id="__APP")
+coinPairList = soup.find_all("td", class_="rc-table-cell rc-table-cell-fix-left rc-table-cell-fix-left-last")
 
 
-CoinPairList = pd.read_csv("coinlist.csv")
-
+CoinList = pd.read_csv("coinlist.csv")
 NumberList = []
-CoinList =CoinPairList.TradingPair.to_list()
 
 
 for x in range(0, len(CoinList)):
@@ -30,10 +28,8 @@ for x in range(0, len(CoinList)):
 
 print(CoinList)
 
-my_secret = os.environ['API']
-
-bot = telebot.TeleBot(my_secret)
-
+my_API_key = os.environ['API']
+bot = telebot.TeleBot(my_API_key)
 
 
 def check_float(potential_float):
@@ -81,15 +77,6 @@ def send_signal(message):
     bot.send_message(message.chat.id, signal1) 
     bot.send_message(message.chat.id, signal2) 
     NumberList.clear()
-
-#@bot.message_handler(func= coin_detect)
-#def send_signal(message):
-  #if len(NumberList) == 6:
-    #request = message.text.split()[0]
-    #response =""
-    #response = "signal buy " + request + "\n\n" + "❇️ Buy Price: "+ NumberList[1] + "\n\n☑️ Target 1: " + NumberList[2] + "\n☑️ Target 2: " + NumberList[3] + "\n☑️ Target 3: " + NumberList[4] + "\n☑️ Target 4: " + NumberList[5] + "\n\n⛔ Stop Loss: " + NumberList[0]
-  
-    #bot.send_message(message.chat.id, response)
 
 
 bot.polling()
