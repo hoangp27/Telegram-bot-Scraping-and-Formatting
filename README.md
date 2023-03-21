@@ -29,4 +29,3 @@ To run the bots 24/7, you would need a deployment platform that host the script 
 - `main.py`: Telegram bot
 - `keep_alive.py`: Python Script that keep the bot alive
 - `coinlist.csv`: Sample data that shows the scraping output
-- `telegrambot.ipynb`: bot in Jupyter Notebook format
