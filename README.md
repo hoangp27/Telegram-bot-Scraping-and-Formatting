@@ -2,7 +2,7 @@
 
 This simple Telegram bot will scraping all the available information of trading pair on Binance website while formatting any receive trading signal from Telegram so that we can used as a signal input.
 
-##Procedure
+## Procedure
 
 The overall process should be something like this:
 
